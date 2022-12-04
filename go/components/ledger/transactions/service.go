@@ -35,6 +35,7 @@ func CreateTransaction(ctx *common.AppContext, tx NewTransaction) Transaction {
 	for _, entry := range tx.Entries {
 		entry.TransactionId = newTx.Id
 		newEntries = append(newEntries, entries.CreateEntry(ctx, trx, entry))
+		// TODO: move to create entry
 		if entry.Type == entries.Debit {
 			var currentBalance int
 			trx.QueryRow(context.Background(), `SELECT balance from Account
@@ -46,6 +47,7 @@ func CreateTransaction(ctx *common.AppContext, tx NewTransaction) Transaction {
 				whoops = true
 				break
 			}
+			// TODO: move to create entry
 			trx.Exec(context.Background(), `UPDATE Account
 		SET balance=balance-$1 WHERE Id = $2`,
 				entry.Amount, entry.AccountId)
