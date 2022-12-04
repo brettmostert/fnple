@@ -6,6 +6,7 @@ import (
 	"github.com/brettmostert/fnple-go/go/components/ledger/internal/common"
 )
 
+// TODO: Move to common pkg
 type api struct {
 	ctx    *common.AppContext
 	router *http.ServeMux
