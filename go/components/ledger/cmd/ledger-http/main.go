@@ -31,7 +31,7 @@ func main() {
 	}
 
 	api := api.NewApi(ctx)
-
+	// todo - add to config
 	server := http.Server{
 		Addr:         "127.0.0.1:3000",
 		Handler:      api,
