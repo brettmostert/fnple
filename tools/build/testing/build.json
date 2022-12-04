@@ -1,0 +1,21 @@
+{
+  "config": {
+    "output": "dist"
+  },
+  "projects": [
+    {
+      "name": "fnple-cli",
+      "lang": "go",
+      "type": "cli",
+      "path": "go/components/fnple-cli/cmd/fnple-cli/main.go",
+      "root": "go",
+      "releases": [
+        {
+          "name": "local",
+          "flags": ["LD_FLAGS=\"-s -w\""],
+          "default": true
+        }
+      ]
+    }
+  ]
+}

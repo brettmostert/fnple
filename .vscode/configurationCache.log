@@ -1,0 +1,1 @@
+{"buildTargets":[".PHONY","all","build","build-all","buildOnly","clean","docker-build","docker-clean","docker-clean-all","docker-release","sca","test","testOnly"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}

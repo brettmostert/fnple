@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/brettmostert/Workspaces/personal/fnple-go'
+sh -c "'/Users/brettmostert/Workspaces/personal/fnple-go/scripts/sca.sh'"
+sh -c "'/Users/brettmostert/Workspaces/personal/fnple-go/scripts/test.sh'"
+make: Leaving directory `/Users/brettmostert/Workspaces/personal/fnple-go'
+ 

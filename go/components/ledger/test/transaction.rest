@@ -1,0 +1,44 @@
+### Create Account
+
+POST http://127.0.0.1:3000/transactions HTTP/1.1
+content-type: application/json
+Authorization: token xxx
+
+{
+    "CoalationId": "{{$guid}}",
+    "Description" : "test",
+    "Entries" : [
+        {
+            "Amount": 10,
+            "AccountId": 1,
+            "Type":"cr",
+            "Description": "test"
+        },
+        {
+            "Amount": 10,
+            "AccountId": 2,
+            "Type":"dr",
+            "Description": "test"
+        }
+    ]
+}
+
+### mooo
+POST http://127.0.0.1:3000/transactions HTTP/1.1
+content-type: application/json
+Authorization: token xxx
+
+{
+    "CoalationId": "{{$guid}}",
+    "Description" : "test",
+    "Entries" : [
+
+        {
+            "Amount": 100000,
+            "AccountId": 2,
+            "Type":"cr",
+            "Description": "test"
+        }
+    ]
+
+}

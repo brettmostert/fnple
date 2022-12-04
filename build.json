@@ -1,0 +1,59 @@
+{
+  "config": {
+    "output": "dist"
+  },
+  "projects": [
+    {
+      "name": "fnple-cli",
+      "lang": "go",
+      "type": "cli",
+      "path": "./components/fnple-cli/cmd/fnple-cli",
+      "root": "go",
+      "releases": [
+        {
+          "name": "local",
+          "flags": ["-race"],
+          "default": true
+        },
+        {
+          "name": "prod",
+          "flags": ["LD_FLAGS=\"-s -w\""],
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "bob",
+      "lang": "go",
+      "type": "cli",
+      "path": "./cmd/bob",
+      "root": "tools/build",
+      "releases": [
+        {
+          "name": "local",
+          "flags": ["-race"],
+          "default": true
+        },
+        {
+          "name": "prod",
+          "flags": ["-ldflags=-s -w"],
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "ledger",
+      "lang": "go",
+      "type": "component",
+      "path": "./components/ledger/cmd/ledger-http",
+      "root": "go",
+      "releases": [
+        {
+          "name": "local",
+          "flags": ["-race"],
+          "default": true
+        }
+      ]
+    }
+  ]
+}
