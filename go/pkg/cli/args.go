@@ -16,8 +16,9 @@ func (cmd *Command) Args() *ArgSet {
 }
 
 type Arg struct {
-	Name  string // name as it appears on command line
-	value string // value as set
+	Name        string // name as it appears on command line
+	value       string // value as set
+	description string
 }
 
 func (set *ArgSet) Get(name string) string {
@@ -31,10 +32,17 @@ func (set *ArgSet) Get(name string) string {
 	return value
 }
 
-func (set *ArgSet) Set(name string) {
+// TODO: change from ... to a struct { name, description etc}
+func (set *ArgSet) Set(name string, params ...string) {
 	key := len(set.args)
 	set.keys = append(set.keys, key)
-	set.args[key] = &Arg{Name: name}
+
+	description := ""
+	if len(params) > 0 {
+		description = params[0]
+	}
+
+	set.args[key] = &Arg{Name: name, description: description}
 }
 
 func (set *ArgSet) Length() int {

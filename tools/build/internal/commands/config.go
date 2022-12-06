@@ -7,14 +7,15 @@ import (
 
 func (e *Executer) initConfig() {
 	cmd := &cli.Command{
-		Name: "config",
-		Run:  ExecuteConfig,
-		// Args: []string{"moo"},
+		Name:             "config",
+		Run:              ExecuteConfig,
+		ShortDescription: "provides functionality for the config",
 	}
 
 	subCmd := &cli.Command{
-		Name: "print",
-		Run:  ExecutePrint,
+		Name:             "print",
+		ShortDescription: "prints out the configuration file",
+		Run:              ExecutePrint,
 	}
 
 	subCmd.Flags().String("f", "build.json", "")
@@ -24,6 +25,7 @@ func (e *Executer) initConfig() {
 }
 
 func ExecuteConfig(cmd *cli.Command, args []string) ([]interface{}, error) {
+	cmd.PrintHelpText()
 	return nil, nil
 }
 

@@ -9,8 +9,9 @@ import (
 
 func (e *Executer) initTest() {
 	cmd := &cli.Command{
-		Name: "test",
-		Run:  ExecuteTest,
+		Name:             "test",
+		Run:              ExecuteTest,
+		ShortDescription: "provides functionality to test projects",
 		// Args: []string{"project"},
 	}
 	cmd.Args().Set("project")

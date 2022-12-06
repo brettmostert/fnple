@@ -7,8 +7,9 @@ import (
 
 func (e *Executer) initBuild() {
 	cmd := &cli.Command{
-		Name: "build",
-		Run:  ExecuteBuild,
+		Name:             "build",
+		Run:              ExecuteBuild,
+		ShortDescription: "provides build functionality",
 		// Args: []string{"project"},
 	}
 	cmd.Args().Set("project")

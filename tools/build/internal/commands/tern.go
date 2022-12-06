@@ -10,8 +10,9 @@ import (
 
 func (e *Executer) initTern() {
 	cmd := &cli.Command{
-		Name: "db",
-		Run:  ExecuteTern,
+		Name:             "db",
+		Run:              ExecuteTern,
+		ShortDescription: "provides functionality to manage db's",
 	}
 
 	cmd.Args().Set("project")

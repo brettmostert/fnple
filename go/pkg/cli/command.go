@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"fmt"
 	"os"
 	"sort"
 	"strings"
@@ -16,8 +17,7 @@ type Command struct {
 	Run              func(cmd *Command, args []string) ([]interface{}, error)
 	HelpType         Help
 	argSet           *ArgSet
-
-	flagSet *FlagSet
+	flagSet          *FlagSet
 	// flags   []*string
 
 	parent   *Command
@@ -26,6 +26,43 @@ type Command struct {
 
 type Options struct {
 	Args []string
+}
+
+func (cmd *Command) PrintHelpText() {
+	description := cmd.ShortDescription
+	if len(description) > 0 {
+		description = " - " + description
+	}
+
+	fmt.Printf("%s %s\n\n", cmd.Name, description)
+	usageText := ""
+	parent := cmd.parent
+	for parent != nil {
+		usageText = " " + parent.Name
+		parent = parent.parent
+	}
+	usageText = usageText + " " + cmd.Name
+	if len(cmd.commands) > 0 {
+		usageText = usageText + " <command>"
+	}
+
+	fmt.Println("Usage:")
+	fmt.Printf("%-5s %s\n\n", "", strings.TrimSpace(usageText)+" [args]")
+
+	if len(cmd.argSet.args) > 0 {
+		fmt.Printf("The args are:\n")
+	}
+	for _, arg := range cmd.argSet.args {
+		fmt.Printf("%-5s %-10s %-5s\n", "", arg.Name, arg.description)
+	}
+
+	if len(cmd.commands) > 0 {
+		fmt.Printf("The commands are:\n")
+	}
+
+	for _, subCmd := range cmd.commands {
+		fmt.Printf("%-5s %-10s %-5s\n", "", subCmd.Name, subCmd.ShortDescription)
+	}
 }
 
 func (cmd *Command) Execute(options ...Options) ([]interface{}, error) {

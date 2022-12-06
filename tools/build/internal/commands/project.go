@@ -9,8 +9,9 @@ import (
 
 func (e *Executer) initProject() {
 	cmd := &cli.Command{
-		Name: "project",
-		Run:  ExecuteProject,
+		Name:             "project",
+		Run:              ExecuteProject,
+		ShortDescription: "provides functionality to manage projects",
 	}
 
 	cmdAdd := cli.Command{
@@ -26,7 +27,6 @@ func (e *Executer) initProject() {
 	cmdAdd.Flags().String("path", "", "") // default {lang}/components/{project}/cmd/{name} for go
 
 	cmd.AddCommand(&cmdAdd)
-
 	cmdList := cli.Command{
 		Name: "list",
 		Run:  ExecuteListProjects,

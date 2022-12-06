@@ -1,8 +1,6 @@
 package commands
 
 import (
-	"fmt"
-
 	"github.com/brettmostert/fnple-go/go/pkg/cli"
 )
 
@@ -17,6 +15,7 @@ func NewExecuter() *Executer {
 		LongDescription:  "A builder builds what a builder builds",
 		Example:          "bob build {projectName}",
 		Run:              DefaultCmd,
+		HelpType:         cli.Default,
 	}
 
 	e := &Executer{
@@ -29,6 +28,9 @@ func NewExecuter() *Executer {
 	e.initProject()
 	e.initTern()
 
+	//TODO: Implement help generically
+	// e.initHelp()
+
 	return e
 }
 
@@ -37,6 +39,6 @@ func (e *Executer) Execute() (interface{}, error) {
 }
 
 func DefaultCmd(cmd *cli.Command, args []string) ([]interface{}, error) {
-	fmt.Printf("buildesr %v", args)
+	cmd.PrintHelpText()
 	return nil, nil
 }
