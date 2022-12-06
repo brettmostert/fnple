@@ -10,6 +10,7 @@ import (
 	"github.com/jackc/pgx/v4"
 )
 
+// TODO: refactor entries and 0 logic
 func CreateTransaction(ctx *common.AppContext, tx NewTransaction) Transaction {
 	now := time.Now()
 	status := "reserved"

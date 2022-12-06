@@ -4,9 +4,9 @@ import { uuidv4 } from "https://jslib.k6.io/k6-utils/1.4.0/index.js";
 
 export const options = {
     stages: [
-      { duration: '5s', target: 100 },
-      { duration: '45s', target: 100 },
-      { duration: '1m30s', target: 50 },
+      { duration: '5s', target: 500 },
+      { duration: '45s', target: 1000 },
+      { duration: '1m30s', target: 2000 },
       { duration: '20s', target: 0 },
     ],
   };
