@@ -10,7 +10,7 @@ if [[ -d ${DIR}/bin ]]; then
 fi
 
 echo -e "==> Building & Installing 'bob' the builder"
-cd "${DIR}/tools/build" || exit
+cd "${DIR}/build" || exit
 go install ./cmd/bob
 go install github.com/jackc/tern@latest
 cd "${DIR}" || exit
