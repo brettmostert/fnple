@@ -75,7 +75,7 @@ func ExecuteProject(cmd *cli.Command, args []string) ([]interface{}, error) {
 
 func ExecuteAddProject(cmd *cli.Command, args []string) ([]interface{}, error) {
 	builder := config.NewBuilder(cmd.Flags().GetString("f"))
-	fmt.Println(cmd.Args().Get("project"))
+
 	project := &config.Project{
 		Name:     cmd.Args().Get("project"),
 		Language: cmd.Flags().GetString("lang"),

@@ -105,7 +105,7 @@ func (builder *Builder) RemoveProject(projectName string) error {
 
 	builder.buildConfig.Projects = append(builder.buildConfig.Projects[:index], builder.buildConfig.Projects[index+1:]...)
 
-	err := os.RemoveAll("./" + existingProject.Language + "/" + existingProject.Name)
+	err := os.RemoveAll("./" + existingProject.Root)
 	if err != nil {
 		return err
 	}

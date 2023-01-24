@@ -73,8 +73,6 @@ func (cmd *Command) Execute(options ...Options) ([]interface{}, error) {
 	}
 
 	argsLen := len(args)
-	println(argsLen)
-	fmt.Printf("args: %v", args)
 
 	var cmdToExecute *Command
 
