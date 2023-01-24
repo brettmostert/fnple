@@ -23,13 +23,13 @@ export const options = {
       "Description" : "test",
       "Entries" : [
           {
-              "Amount": 10,
+              "Amount": 7,
               "AccountId": 1,
               "Type":"cr",
               "Description": "test"
           },
           {
-              "Amount": 10,
+              "Amount": 7,
               "AccountId": 2,
               "Type":"dr",
               "Description": "test"
