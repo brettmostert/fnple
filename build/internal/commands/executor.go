@@ -28,7 +28,7 @@ func NewExecuter() *Executer {
 	e.initProject()
 	e.initTern()
 
-	//TODO: Implement help generically
+	// TODO: Implement help generically
 	// e.initHelp()
 
 	return e

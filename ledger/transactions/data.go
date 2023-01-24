@@ -10,7 +10,7 @@ import (
 	"github.com/jackc/pgx/v4"
 )
 
-// Get all habits from db
+// Get all habits from db.
 func getAll(ctx *common.AppContext) []*Transaction {
 	var data []*Transaction
 
@@ -25,6 +25,7 @@ func getAll(ctx *common.AppContext) []*Transaction {
 
 func insertTransaction(ctx *common.AppContext, trx pgx.Tx, tx Transaction) Transaction {
 	var data Transaction
+
 	var id int
 
 	err := trx.QueryRow(context.Background(), `INSERT INTO transaction
@@ -32,7 +33,6 @@ func insertTransaction(ctx *common.AppContext, trx pgx.Tx, tx Transaction) Trans
 		VALUES ($1, $2, $3, $4, $5) RETURNING id;`,
 		tx.CoalationId, tx.Description, tx.Status,
 		tx.CreatedTime, tx.ModifiedTime).Scan(&id)
-
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Insert failed: %v\n", err)
 		os.Exit(1)

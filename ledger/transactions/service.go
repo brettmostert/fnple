@@ -11,10 +11,11 @@ import (
 	"github.com/jackc/pgx/v4"
 )
 
-// TODO: refactor entries and 0 logic
+// TODO: refactor entries and 0 logic.
 func CreateTransaction(ctx *common.AppContext, tx NewTransaction) Transaction {
 	now := time.Now()
 	status := "reserved"
+
 	if tx.TxOptions.AutoComplete {
 		status = "complete"
 	}
@@ -34,6 +35,7 @@ func CreateTransaction(ctx *common.AppContext, tx NewTransaction) Transaction {
 	// whoops := false
 	// for each entry insert it
 	newEntries := []entries.Entry{}
+
 	for _, entry := range tx.Entries {
 		entry.TransactionId = newTx.Id
 		newEntries = append(newEntries, entries.CreateEntry(ctx, trx, entry))
@@ -47,5 +49,6 @@ func CreateTransaction(ctx *common.AppContext, tx NewTransaction) Transaction {
 	// }
 	newTx.Entries = newEntries
 	trx.Commit(context.Background())
+
 	return newTx
 }

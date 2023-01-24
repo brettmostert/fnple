@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/fs"
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"strings"
@@ -37,15 +36,16 @@ func NewBuilder(filePath string) *Builder {
 	return builder
 }
 
-// TODO: add unit test
+// TODO: add unit test.
 func (builder *Builder) UpdateConfigFile(data []byte) error {
-	return ioutil.WriteFile(builder.filePath, data, fs.ModeAppend)
+	return os.WriteFile(builder.filePath, data, fs.ModeAppend)
 }
 
-// TODO: fix assumed column widths
+// TODO: fix assumed column widths.
 func (build *Builder) ListProjects() error {
 	fmt.Printf("%-20s %-12s %-12s %-12s\n", "name", "lang", "type", "releases")
 	fmt.Printf("%-20s %-12s %-12s %-12s\n", "----", "----", "----", "--------")
+
 	for _, project := range build.buildConfig.Projects {
 		releases := []string{}
 		for _, release := range project.Releases {
@@ -58,7 +58,7 @@ func (build *Builder) ListProjects() error {
 	return nil
 }
 
-// TODO: add unit test
+// TODO: add unit test.
 func (builder *Builder) AddProject(project *Project) error {
 	existingProject, _ := builder.findProject(project.Name)
 	if existingProject != nil {
@@ -84,19 +84,20 @@ func (builder *Builder) AddProject(project *Project) error {
 
 	builder.buildConfig.Projects = append(builder.buildConfig.Projects, *project)
 
-	// TODO: Move this to create for other languages & to create other folders and potentially "main" file i.e main.go
-	err := os.MkdirAll("./"+project.Root+"/"+project.Path, 0700)
+	// TODO: Move this to create for other languages & to create other folders and potentially "main" file i.e main.go.
+	err := os.MkdirAll("./"+project.Root+"/"+project.Path, 0o700)
 	if err != nil {
 		return err
 	}
 
-	// TODO: Copy template of main.go file
+	// TODO: Copy template of main.go file.
 
 	data, _ := json.MarshalIndent(builder.buildConfig, "", "\t")
+
 	return builder.UpdateConfigFile(data)
 }
 
-// TODO: add unit test
+// TODO: add unit test.
 func (builder *Builder) RemoveProject(projectName string) error {
 	existingProject, index := builder.findProject(projectName)
 	if existingProject == nil {
@@ -111,10 +112,11 @@ func (builder *Builder) RemoveProject(projectName string) error {
 	}
 
 	data, _ := json.MarshalIndent(builder.buildConfig, "", "\t")
+
 	return builder.UpdateConfigFile(data)
 }
 
-// TODO: add unit test
+// TODO: add unit test.
 func (builder *Builder) Build(name string, releaseName string) error {
 	project, _ := builder.findProject(name)
 	if project == nil {
@@ -173,7 +175,7 @@ func (builder *Builder) findProject(name string) (*Project, int) {
 	return nil, -1
 }
 
-// TODO: add unit test
+// TODO: add unit test.
 func (project *Project) findRelease(name string) *Release {
 	for _, rel := range project.Releases {
 		if strings.EqualFold(rel.Name, name) {

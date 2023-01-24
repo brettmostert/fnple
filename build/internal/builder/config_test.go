@@ -9,7 +9,6 @@ func TestReadFile(t *testing.T) {
 	filePath := "../../testing/build.json"
 
 	_, err := readFile(filePath)
-
 	if err != nil {
 		t.Errorf("Did not expect error '%v'", err)
 	}
@@ -21,7 +20,6 @@ func TestParseConfig(t *testing.T) {
 	bytes, _ := readFile(filePath)
 
 	buildConfig, err := parseConfig(bytes)
-
 	if err != nil {
 		t.Errorf("Did not expect error '%v'", err)
 	}

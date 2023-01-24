@@ -24,13 +24,13 @@ import (
 
 func insertEntry(ctx *common.AppContext, trx pgx.Tx, en Entry) Entry {
 	var data Entry
+
 	var id int
 
 	err := trx.QueryRow(context.Background(), `INSERT INTO entry
 		(transaction_id, description, type, amount, account_id )
 		VALUES ($1, $2, $3, $4, $5) RETURNING id;`,
 		en.TransactionId, en.Description, en.Type, en.Amount, en.AccountId).Scan(&id)
-
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Insert failed: %v\n", err)
 		os.Exit(1)

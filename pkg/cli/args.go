@@ -23,16 +23,18 @@ type Arg struct {
 
 func (set *ArgSet) Get(name string) string {
 	value := ""
+
 	for _, arg := range set.args {
 		if arg.Name == name {
 			value = arg.value
 			break
 		}
 	}
+
 	return value
 }
 
-// TODO: change from ... to a struct { name, description etc}
+// TODO: change from ... to a struct { name, description etc}.
 func (set *ArgSet) Set(name string, params ...string) {
 	key := len(set.args)
 	set.keys = append(set.keys, key)

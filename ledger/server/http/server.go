@@ -6,7 +6,7 @@ import (
 	"github.com/brettmostert/fnple/ledger/internal/common"
 )
 
-// TODO: Move to common pkg
+// TODO: Move to common pkg.
 type api struct {
 	ctx    *common.AppContext
 	router *http.ServeMux
@@ -18,6 +18,7 @@ func NewApi(ctx *common.AppContext) *api {
 		router: http.NewServeMux(),
 	}
 	s.routes()
+
 	return s
 }
 

@@ -37,7 +37,6 @@ func TestTest(t *testing.T) {
 	builder := NewBuilder(filePath)
 
 	err := builder.Test("fnple-cli")
-
 	if err != nil {
 		t.Errorf("Expected no errors, got: %v", err)
 	}

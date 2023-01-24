@@ -16,7 +16,7 @@ func (builder *Builder) Db(name string, ternArgs string) error {
 	}
 
 	if _, err := os.Stat(project.Name + "/db"); os.IsNotExist(err) {
-		err := os.MkdirAll(project.Name+"/db", 0700)
+		err := os.MkdirAll(project.Name+"/db", 0o700)
 		if err != nil {
 			return err
 		}

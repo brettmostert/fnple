@@ -28,6 +28,7 @@ func (e *Executer) initProject() {
 	cmdAdd.Flags().String("path", "", "") // default {lang}/{project}/cmd/{name} for go
 
 	cmd.AddCommand(&cmdAdd)
+
 	cmdList := cli.Command{
 		Name: "list",
 		Run:  ExecuteListProjects,

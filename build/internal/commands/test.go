@@ -1,8 +1,6 @@
 package commands
 
 import (
-	"fmt"
-
 	config "github.com/brettmostert/fnple/build/internal/builder"
 	"github.com/brettmostert/fnple/pkg/cli"
 )
@@ -22,7 +20,6 @@ func (e *Executer) initTest() {
 
 func ExecuteTest(cmd *cli.Command, args []string) ([]interface{}, error) {
 	builder := config.NewBuilder(cmd.Flags().GetString("f"))
-	fmt.Printf("%s\n", args)
 	err := builder.Test(cmd.Args().Get("project"))
 
 	return nil, err

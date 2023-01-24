@@ -3,7 +3,7 @@ package builder
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 )
 
@@ -39,7 +39,7 @@ func readFile(jsonFilePath string) ([]byte, error) {
 
 	defer jsonFile.Close()
 
-	return ioutil.ReadAll(jsonFile)
+	return io.ReadAll(jsonFile)
 }
 
 func parseConfig(configJson []byte) (*BuildConfig, error) {

@@ -32,7 +32,9 @@ func ExecuteTern(cmd *cli.Command, args []string) ([]interface{}, error) {
 	builder := config.NewBuilder(cmd.Flags().GetString("f"))
 
 	var sb strings.Builder
+
 	spacer := ""
+
 	for i := 1; i <= cmd.Args().Length()-1; i++ {
 		arg := cmd.Args().Get(strconv.Itoa(i))
 		if arg != "" {

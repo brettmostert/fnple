@@ -18,13 +18,16 @@ fnple - The simple fintech platform for people
 - [ ] habit - modify
 - [ ] auth - between components
 - [ ] add a behaviour - make it a habit, later add other types like tasks
-
-### In Progress
-- [ ]move context in specific projects to pkg folder
+- [ ] move context in specific projects to pkg folder
 - [ ] updated readme
 - [ ]update builds to get vendor folder, pre commit hook for
 - [ ] go mod tidy
 - [ ]go mod vendor
+
+### In Progress
+- [ ] add golangci-lint to bootstrap
+- [ ] fix all lint issues
+- [ ] ensure gofumpt is run (replace gofmt)
 
 
 ### Done ✓

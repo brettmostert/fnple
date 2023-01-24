@@ -35,12 +35,15 @@ func (cmd *Command) PrintHelpText() {
 	}
 
 	fmt.Printf("%s %s\n\n", cmd.Name, description)
+
 	usageText := ""
 	parent := cmd.parent
+
 	for parent != nil {
 		usageText = " " + parent.Name
 		parent = parent.parent
 	}
+
 	usageText = usageText + " " + cmd.Name
 	if len(cmd.commands) > 0 {
 		usageText = usageText + " <command>"
@@ -52,6 +55,7 @@ func (cmd *Command) PrintHelpText() {
 	if len(cmd.argSet.args) > 0 {
 		fmt.Printf("The args are:\n")
 	}
+
 	for _, arg := range cmd.argSet.args {
 		fmt.Printf("%-5s %-10s %-5s\n", "", arg.Name, arg.description)
 	}
@@ -97,12 +101,16 @@ func (cmd *Command) Execute(options ...Options) ([]interface{}, error) {
 	}
 
 	i := 0
+
 	sort.Ints(cmdToExecute.Args().keys)
+
 	for _, key := range cmdToExecute.Args().keys {
 		if i > len(argsToExecute)-1 {
 			break
 		}
+
 		cmdToExecute.Args().args[key].value = argsToExecute[i]
+
 		i++
 	}
 
@@ -111,17 +119,20 @@ func (cmd *Command) Execute(options ...Options) ([]interface{}, error) {
 
 func (cmd *Command) findNext(args []string) *Command {
 	var nextCommand *Command
+
 	for _, cmd := range cmd.commands {
 		if cmd.Name == args[0] {
 			nextCommand = cmd
 			break
 		}
 	}
+
 	return nextCommand
 }
 
 func (rootCmd *Command) findCommand(args []string) *Command {
 	var command *Command
+
 	var innerfind func(*Command, []string) *Command
 
 	innerfind = func(innerCommand *Command, innerArgs []string) *Command {
@@ -145,6 +156,7 @@ func (rootCmd *Command) findCommand(args []string) *Command {
 	if parentCmd != nil {
 		argsWithoutFlags := stripFlags(args[1:])
 		command = innerfind(parentCmd, argsWithoutFlags)
+
 		if command == nil {
 			if len(parentCmd.Args().args) > 0 {
 				command = parentCmd

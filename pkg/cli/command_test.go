@@ -17,7 +17,7 @@ func ExecuteTestCommand(cmd *Command, args []string) ([]interface{}, error) {
 	return returnValue, nil
 }
 
-// returns a paramter value based on arg 2
+// returns a parameter value based on arg 2.
 func ExecuteTestCommandReturningParamValue(cmd *Command, args []string) ([]interface{}, error) {
 	returnValue := make([]interface{}, 1)
 	returnValue[0] = cmd.Args().Get(args[1])
@@ -78,7 +78,7 @@ func setupCliForTesting() *Command {
 func TestFindCommand(t *testing.T) {
 	rootCommand := setupCliForTesting()
 
-	var tests = []struct {
+	tests := []struct {
 		name     string
 		command  string
 		expected string
