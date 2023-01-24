@@ -1,6 +1,6 @@
 <!-- trunk-ignore(markdownlint/MD041) -->
 <p align="center">
-  <img alt="golangci-lint logo" src="assets/fnple-go-logo.png" height="150" />
+  <img alt="golangci-lint logo" src="static/images/fnple-go-logo.png" height="150" />
   <h3 align="center">fnple</h3>
   <p align="center">The simple fintech platform for people</p>
 </p>
