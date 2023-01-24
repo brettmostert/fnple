@@ -5,6 +5,7 @@ import (
 	"log"
 	"time"
 
+	"github.com/brettmostert/fnple-go/go/components/ledger/accounts"
 	"github.com/brettmostert/fnple-go/go/components/ledger/internal/common"
 	"github.com/brettmostert/fnple-go/go/components/ledger/transactions/entries"
 	"github.com/jackc/pgx/v4"
@@ -30,41 +31,20 @@ func CreateTransaction(ctx *common.AppContext, tx NewTransaction) Transaction {
 	defer trx.Rollback(context.Background())
 
 	newTx = insertTransaction(ctx, trx, newTx)
-	whoops := false
+	// whoops := false
 	// for each entry insert it
 	newEntries := []entries.Entry{}
 	for _, entry := range tx.Entries {
 		entry.TransactionId = newTx.Id
 		newEntries = append(newEntries, entries.CreateEntry(ctx, trx, entry))
-		// TODO: move to create entry
-		if entry.Type == entries.Debit {
-			var currentBalance int
-			trx.QueryRow(context.Background(), `SELECT balance from Account
-		WHERE Id = $1`,
-				entry.AccountId).Scan(&currentBalance)
-			log.Printf("%v balance (%v)", currentBalance, entry.AccountId)
-			if currentBalance-entry.Amount < 0 {
-				log.Printf("(%v)", currentBalance-entry.Amount)
-				whoops = true
-				break
-			}
-			// TODO: move to create entry
-			trx.Exec(context.Background(), `UPDATE Account
-		SET balance=balance-$1 WHERE Id = $2`,
-				entry.Amount, entry.AccountId)
-
-		} else {
-			trx.Exec(context.Background(), `UPDATE Account
-		SET balance=balance+$1 WHERE Id = $2`,
-				entry.Amount, entry.AccountId)
-		}
-
+		currentBalance, newBalance := accounts.UpdateBalance(ctx, trx, entry)
+		log.Printf("Current Balance: %v, New Balance: %v", currentBalance, newBalance)
 	}
-	if whoops {
-		log.Println("NOT ENOUGH MONEY")
-		trx.Rollback(context.Background())
-		return Transaction{}
-	}
+	// if whoops {
+	// 	log.Println("NOT ENOUGH MONEY")
+	// 	trx.Rollback(context.Background())
+	// 	return Transaction{}
+	// }
 	newTx.Entries = newEntries
 	trx.Commit(context.Background())
 	return newTx

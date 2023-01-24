@@ -37,7 +37,7 @@ func (s *api) handleTransaction() http.HandlerFunc {
 		dec.Decode(&tx)
 
 		newTx := transactions.CreateTransaction(s.ctx, tx)
-		c, _ := json.MarshalIndent(newTx, "", "  ")
-		print(string(c))
+		_, _ = json.MarshalIndent(newTx, "", "  ")
+		// print(string(c))
 	}
 }

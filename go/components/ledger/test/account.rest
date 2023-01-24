@@ -1,12 +1,10 @@
 ### Create Account
-
 POST http://127.0.0.1:3000/accounts HTTP/1.1
 content-type: application/json
 Authorization: token xxx
 
 {
     "entity_id": "{{$guid}}",
-
 }
 
 ### Create Account
@@ -14,7 +12,6 @@ Authorization: token xxx
 POST http://127.0.0.1:3000/accounts HTTP/1.1
 content-type: application/json
 Authorization: token xxx
-
 {
     "entity_id": "{{$guid}}",
     "description": "{{description}}"
@@ -24,7 +21,6 @@ Authorization: token xxx
 GET http://127.0.0.1:3000/accounts HTTP/1.1
 content-type: application/json
 Authorization: token xxx
-
 
 ### Update Account
 GET http://127.0.0.1/
