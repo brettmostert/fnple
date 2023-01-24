@@ -15,7 +15,7 @@
 tmp
 
 # Dependency directories (remove the comment below to include it)
-vendor
+# vendor - included in source to speed up builds and make ci simpler
 bin
 dist
 .cache
