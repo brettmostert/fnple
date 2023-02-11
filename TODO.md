@@ -2,7 +2,9 @@
 
 fnple - The simple fintech platform for people
 
+## Board 1
 ### Todo
+- [ ] checkout https://taskfile.dev
 - [ ] bob - add project to include has DB to init DB, allow override of db name and replace config with config we actually want.
 - [ ] boballow get projects (list) and get dbs (list)
 - [ ] use get db from bob to get list of dbs to init in postgres
@@ -27,7 +29,7 @@ fnple - The simple fintech platform for people
 ### In Progress
 - [ ] add golangci-lint to bootstrap
 - [ ] fix all lint issues
-- [ ] ensure gofumpt is run (replace gofmt)
+- [ ] ensure gofumpt is run (replace gofmt) add to bootstrap
 
 
 ### Done ✓

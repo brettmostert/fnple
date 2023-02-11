@@ -1,41 +1,52 @@
-<!-- trunk-ignore(markdownlint/MD041) -->
 <p align="center">
   <img alt="golangci-lint logo" src="static/images/fnple-go-logo.png" height="150" />
   <h3 align="center">fnple</h3>
   <p align="center">The simple fintech platform for people</p>
 </p>
+<a name="readme-top"></a>
 
 ---
 
-**`fnple`** is a simple fintech platform.
+## Overview
 
----
+**`fnple`** is a simple, configurable, fintech platform.
 
-## Project Features
-- [ ] Ledger
-  - [ ] Account Management
-  - [ ] Ledger Entries
-  - [ ] Settlement
-- [ ] Transaction Management
-  - [ ] Transaction Creation
-  - [ ] Transaction Execution
-  - [ ] Transaction Rejection
-  - [ ] Transaction Types
-    - [ ] Money In
-    - [ ] Transfer
-    - [ ] Pay
-    - [ ] Sell
-    - [ ] Buy
-  - [ ] Trader Management
-  - [ ] Customer Management
-- [ ] **v1.0** - API
-  - [ ] **v1.0** Rest'ish API
-  - [ ] **v1.1** GRPC
-- [ ] **v1.1** - Android App
-- [ ] **v1.2** - IOS App
-- [ ] **v1.3** - Desktop App
+## To start using `fnple`
 
----
+Head over to [fnple.isnotregisteryet.io](http://sorry)
+
+## To start developing `fnple`
+### Prerequisites
+
+- You have a working [Go environment](https://go.dev/doc/install)
+- You have a working [Docker](https://docs.docker.com/engine) environment, we use [Podman](https://podman.io)
+  ```sh
+  alias docker="podman"
+  ```
+- You have [npm](https://nodejs.org/) installed
+
+### Getting Started
+
+1. Ensure you have all the prerequisites setup
+2. Clone the repo
+    ```sh
+    git clone git@github.com:brettmostert/fnple.git
+    ```
+3. Execute the `bootstrap.sh` script, this will install a few tools, namely: bob, gfumpt, tern, commitlint, markdownlint, husky.
+   ```sh
+   ./scripts/bootstrap.sh
+   ```
+4. **Optional**. Setup your IDE by following the instructions at
+    - https://github.com/mvdan/gofumpt
+    - https://golangci-lint.run/usage/integrations
+5.
+
+<!-- Use `bob` to run `fnple`.
+
+```sh
+bob exec run-local
+``` -->
+
 ## Components
 
 | Name          | Description          |    Language    |    Type     |
@@ -99,14 +110,14 @@ The tools listed below are required for the build and/or packaging process.
 | Category | Description                        | URL                       |
 | -------- | ---------------------------------- | ------------------------- |
 | Linter   | `golangci` is our linter of choice | https://golangci-lint.run |
-|          |                                    |                           |
+| Formatter| `gofumpt` replaces gofmt           | https://github.com/mvdan/gofumpt |
 
 # Giving Thanks
 
 A Big Shout Out! To the people who worked on the following, the work you have done has aided in my learning of the go language and eco-system.
 
 - project layout inspired by <https://github.com/golang-standards/project-layout> and <https://github.com/stellar/go>
-- linting from <https://golangci-lint.run>
+- linting from <https://golangci-lint.run> and <https://golangci-lint.run/usage/integrations/#go-for-visual-studio-code>
 - go install github.com/bazelbuild/bazelisk@latest
 - `pkg/cli` inspired by <https://github.com/spf13/cobra>
 - project logo inspired by my horrific graphic design and created with <https://krita.org/en/>
@@ -131,3 +142,29 @@ A Big Shout Out! To the people who worked on the following, the work you have do
   - scripted commit of go proto definitons <https://github.com/brettmostert/trple-proto-product-go>
 - grpc <https://github.com/brettmostert/trple>, experimented with
   - using generated proto definitions from mono repo for repo
+
+## Project Features
+- [ ] Ledger
+  - [ ] Account Management
+  - [ ] Ledger Entries
+  - [ ] Settlement
+- [ ] Transaction Management
+  - [ ] Transaction Creation
+  - [ ] Transaction Execution
+  - [ ] Transaction Rejection
+  - [ ] Transaction Types
+    - [ ] Money In
+    - [ ] Transfer
+    - [ ] Pay
+    - [ ] Sell
+    - [ ] Buy
+  - [ ] Trader Management
+  - [ ] Customer Management
+- [ ] **v1.0** - API
+  - [ ] **v1.0** Rest'ish API
+  - [ ] **v1.1** GRPC
+- [ ] **v1.1** - Android App
+- [ ] **v1.2** - IOS App
+- [ ] **v1.3** - Desktop App
+
+---

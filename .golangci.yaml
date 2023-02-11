@@ -8,9 +8,11 @@ linters:
     - ineffassign
     - staticcheck
     - typecheck
-    - gofmt
+    - gofumpt
     - godot
     - gosec
     - makezero
     - misspell
     - wsl
+    - gocritic
+    - stylecheck
