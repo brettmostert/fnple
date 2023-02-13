@@ -1,18 +1,19 @@
 linters:
-  disable-all: false
+  disable-all: true
+  # Keep them in alphabetical order please.
   enable:
-    - unused
     - errcheck
+    - gocritic
+    - godot
+    - gofumpt
+    - gosec
     - gosimple
     - govet
+    - govet
     - ineffassign
-    - staticcheck
-    - typecheck
-    - gofumpt
-    - godot
-    - gosec
     - makezero
-    - misspell
-    - wsl
-    - gocritic
+    - staticcheck
     - stylecheck
+    - typecheck
+    - unused
+    - wsl

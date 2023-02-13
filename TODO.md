@@ -4,6 +4,7 @@ fnple - The simple fintech platform for people
 
 ## Board 1
 ### Todo
+- [ ] fix all linting issues
 - [ ] checkout https://taskfile.dev
 - [ ] bob - add project to include has DB to init DB, allow override of db name and replace config with config we actually want.
 - [ ] boballow get projects (list) and get dbs (list)
