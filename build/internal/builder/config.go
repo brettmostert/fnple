@@ -21,7 +21,6 @@ type Project struct {
 	Language string    `json:"lang"`
 	Type     string    `json:"type"`
 	Path     string    `json:"path"`
-	Root     string    `json:"root"`
 	Releases []Release `json:"releases"`
 }
 

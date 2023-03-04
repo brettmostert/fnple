@@ -23,8 +23,7 @@ func (e *Executer) initProject() {
 	cmdAdd.Args().Set("project")
 	cmdAdd.Flags().String("f", "build.json", "")
 	cmdAdd.Flags().String("lang", "go", "")
-	cmdAdd.Flags().String("type", "component", "")
-	cmdAdd.Flags().String("root", "", "") // default is language name
+	cmdAdd.Flags().String("type", "unknown", "")
 	cmdAdd.Flags().String("path", "", "") // default {lang}/{project}/cmd/{name} for go
 
 	cmd.AddCommand(&cmdAdd)
@@ -82,7 +81,6 @@ func ExecuteAddProject(cmd *cli.Command, args []string) ([]interface{}, error) {
 		Language: cmd.Flags().GetString("lang"),
 		Type:     cmd.Flags().GetString("type"),
 		Path:     cmd.Flags().GetString("path"),
-		Root:     cmd.Flags().GetString("root"),
 	}
 
 	err := builder.AddProject(project)

@@ -53,14 +53,27 @@
 			"name": "ledger",
 			"lang": "go",
 			"type": "component",
-			"path": "cmd/ledger-http",
-			"root": "ledger",
+			"path": "ledger/cmd/ledger-http",
 			"releases": [
 				{
 					"name": "local",
 					"flags": [
 						"-race"
 					],
+					"default": true
+				}
+			]
+		},
+		{
+			"name": "test18",
+			"lang": "go",
+			"type": "component",
+			"path": "./moo18/cmd",
+			"root": "",
+			"releases": [
+				{
+					"name": "default",
+					"flags": [],
 					"default": true
 				}
 			]

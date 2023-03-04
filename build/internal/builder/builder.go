@@ -65,33 +65,39 @@ func (builder *Builder) AddProject(project *Project) error {
 		return exitError.New("Project already exists ", exitError.Failure)
 	}
 
-	if project.Path == "" {
-		project.Path = project.Name
-		if project.Language == "go" {
-			project.Path = "cmd/" + project.Name
-		}
-	}
-
-	if project.Root == "" {
-		project.Root = project.Name
-	}
-
 	project.Releases = append(project.Releases, Release{
 		Name:    "default",
 		Default: true,
 		Flags:   []string{},
 	})
 
+	root := "."
+	if project.Type == "component" {
+		root += "/components"
+	}
+
+	if project.Type == "package" || project.Type == "pkg" {
+		root += "/pkg"
+	}
+
+	projectDir := "/" + project.Name
+
+	if len(project.Path) < 1 {
+		project.Path = root + projectDir
+	}
+
+	if project.Language == "go" && project.Type == "component" {
+		project.Path += "/cmd"
+	}
+
 	builder.buildConfig.Projects = append(builder.buildConfig.Projects, *project)
 
-	// TODO: Move this to create for other languages & to create other folders and potentially "main" file i.e main.go.
-	err := os.MkdirAll("./"+project.Root+"/"+project.Path, 0o700)
+	err := os.MkdirAll(project.Path, 0o700)
 	if err != nil {
 		return err
 	}
 
 	// TODO: Copy template of main.go file.
-
 	data, _ := json.MarshalIndent(builder.buildConfig, "", "\t")
 
 	return builder.UpdateConfigFile(data)

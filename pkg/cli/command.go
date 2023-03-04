@@ -46,7 +46,7 @@ func (cmd *Command) PrintHelpText() {
 
 	usageText = usageText + " " + cmd.Name
 	if len(cmd.commands) > 0 {
-		usageText = usageText + " <command>"
+		usageText += " <command>"
 	}
 
 	fmt.Println("Usage:")
@@ -88,7 +88,16 @@ func (cmd *Command) Execute(options ...Options) ([]interface{}, error) {
 		argsToExecute = args
 	case argsLen > 0:
 		cmdToExecute = cmd.findCommand(args)
-		argsToExecute = args[argsLen-1:]
+		index := 1
+
+		for i := range args {
+			if args[i] == cmdToExecute.Name {
+				index = 1
+				break
+			}
+		}
+
+		argsToExecute = args[index+1:]
 	}
 
 	if cmdToExecute == nil {
